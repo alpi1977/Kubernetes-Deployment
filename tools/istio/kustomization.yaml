@@ -1,0 +1,13 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: my-kustomization
+  namespace: istio-system
+spec:
+  interval: 5m
+  path: .  # Assuming all resources are in the same directory
+  prune: true  # Optional, set to true if you want to delete previously applied resources that are no longer in the source
+  sourceRef:
+    kind: GitRepository  # Assuming your resources are in a Git repository
+    name: Kubernetes-Deployment  # Name of the GitRepository resource that holds your resources
+
