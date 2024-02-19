@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authority
+  namespace: authority
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authority
+  template:
+    metadata:
+      labels:
+        app: authority
+    spec:
+      containers:
+      - name: authority
+        image: aozkan1977/authority:1.0
+        ports:
+        - containerPort: 8080
+      volumes:
+      - name: enable-config
+        configMap:
+          name: enable-config
+          items:
+          - key: Cleverbit__Enabled
+            path: enable-config
