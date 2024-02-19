@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicex
+  namespace: servicex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: servicex
+  template:
+    metadata:
+      labels:
+        app: servicex
+    spec:
+      containers:
+      - name: s2s
+        image: aozkan1977/s2s:1.0
+        ports:
+        - containerPort: 8080
+      volumes:
+      - name: secret
+        secret:
+          secretName: servicex-secret
